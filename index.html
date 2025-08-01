@@ -4,11 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>murawGL</title>
+<style>
+  :root {
+    --bg-color: white;
+    --text-color: black;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  #theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+</style>
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-<header>
+  <header>
     <h1>murawGL</h1>
     <nav>
       <a href="index.html">Home</a>
@@ -27,5 +54,22 @@
   <footer>
     <p>© 2025 by Author. All rights reserved.</p>
   </footer>
+<button id="theme-toggle">🌓</button>
+
+<script>
+  const toggleButton = document.getElementById("theme-toggle");
+  const currentTheme = localStorage.getItem("theme");
+
+  if (currentTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  });
+</script>
 </body>
 </html>
+
