@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>murawGL</title>
+  <title>Theme Switcher Example</title>
 
-  <!-- Встроенные стили темы -->
   <style>
     :root {
       --bg-color: white;
@@ -20,57 +19,29 @@
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
       font-family: sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      padding: 2rem;
     }
 
     #theme-toggle {
       position: fixed;
       top: 10px;
       right: 10px;
+      font-size: 1.5rem;
       background: none;
       border: none;
-      font-size: 1.5rem;
       cursor: pointer;
       color: var(--text-color);
     }
-
-    header, footer, nav {
-      padding: 10px;
-    }
-
-    nav a {
-      margin-right: 15px;
-    }
   </style>
-
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header>
-    <h1>murawGL</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="chapter1.html">Chapter 1</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="translations.html">Translations</a>
-      <a href="index_ru.html">Русский</a>
-    </nav>
-  </header>
-
-  <main>
-    <img src="images/cover.jpg" alt="Comic Cover" width="300"/>
-    <p>Welcome to murawGL — a comic site. Here you can read chapters, check schedule, and explore translations.</p>
-  </main>
-
-  <footer>
-    <p>© 2025 by Author. All rights reserved.</p>
-  </footer>
-
-  <!-- Кнопка переключения темы -->
   <button id="theme-toggle">🌙</button>
 
-  <!-- Скрипт переключения темы -->
+  <h1>Hello, world!</h1>
+  <p>This is a test of theme switching.</p>
+
   <script>
     const toggleButton = document.getElementById("theme-toggle");
 
@@ -80,17 +51,15 @@
       toggleButton.textContent = theme === "dark" ? "☀️" : "🌙";
     }
 
-    // Загрузка сохранённой темы или системной по умолчанию
-    const storedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    if (storedTheme) {
-      setTheme(storedTheme);
+    if (savedTheme) {
+      setTheme(savedTheme);
     } else {
       setTheme(systemPrefersDark ? "dark" : "light");
     }
 
-    // Обработка клика по кнопке
     toggleButton.addEventListener("click", () => {
       const currentTheme = document.documentElement.getAttribute("data-theme");
       const newTheme = currentTheme === "dark" ? "light" : "dark";
@@ -99,7 +68,4 @@
   </script>
 </body>
 </html>
-
-  
-
 
