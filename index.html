@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>murawGL</title>
 
+  <!-- Встроенные стили темы -->
   <style>
     :root {
       --bg-color: white;
@@ -20,6 +21,7 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
+      font-family: sans-serif;
     }
 
     #theme-toggle {
@@ -31,6 +33,14 @@
       font-size: 1.5rem;
       cursor: pointer;
       color: var(--text-color);
+    }
+
+    header, footer, nav {
+      padding: 10px;
+    }
+
+    nav a {
+      margin-right: 15px;
     }
   </style>
 
@@ -57,8 +67,10 @@
     <p>© 2025 by Author. All rights reserved.</p>
   </footer>
 
+  <!-- Кнопка переключения темы -->
   <button id="theme-toggle">🌙</button>
 
+  <!-- Скрипт переключения темы -->
   <script>
     const toggleButton = document.getElementById("theme-toggle");
 
@@ -68,22 +80,26 @@
       toggleButton.textContent = theme === "dark" ? "☀️" : "🌙";
     }
 
+    // Загрузка сохранённой темы или системной по умолчанию
     const storedTheme = localStorage.getItem("theme");
     const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
     if (storedTheme) {
       setTheme(storedTheme);
-    } else if (systemPrefersDark) {
-      setTheme("dark");
     } else {
-      setTheme("light");
+      setTheme(systemPrefersDark ? "dark" : "light");
     }
 
+    // Обработка клика по кнопке
     toggleButton.addEventListener("click", () => {
       const currentTheme = document.documentElement.getAttribute("data-theme");
-      setTheme(currentTheme === "dark" ? "light" : "dark");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      setTheme(newTheme);
     });
   </script>
 </body>
 </html>
+
+  
+
 
