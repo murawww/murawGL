@@ -3,89 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>murawGL</title>
-
-  <style>
-    /* CSS-переменные для темы */
-    :root {
-      --bg-color: white;
-      --text-color: black;
-      --link-color: blue;
-      --link-hover-color: darkblue;
-      --header-footer-bg: #eee;
-    }
-
-    [data-theme="dark"] {
-      --bg-color: #121212;
-      --text-color: #f1f1f1;
-      --link-color: #66aaff;
-      --link-hover-color: #99cfff;
-      --header-footer-bg: #222;
-    }
-
-    /* Основные стили */
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 1rem 2rem 1rem;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    header, footer {
-      background-color: var(--header-footer-bg);
-      padding: 1rem;
-      text-align: center;
-    }
-
-    nav {
-      margin-top: 0.5rem;
-    }
-
-    nav a {
-      color: var(--link-color);
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--link-hover-color);
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 700px;
-      margin: 1rem auto;
-      text-align: center;
-    }
-
-    main img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-
-    /* Кнопка переключения темы */
-    #theme-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--text-color);
-      user-select: none;
-      transition: color 0.3s;
-      padding: 0;
-      line-height: 1;
-    }
-  </style>
+  <title>murawGL - Home</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
@@ -110,32 +29,9 @@
     <p>© 2025 by Author. All rights reserved.</p>
   </footer>
 
-  <script>
-    const toggleButton = document.getElementById('theme-toggle');
-
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      toggleButton.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-
-    // Загружаем тему из localStorage или используем системную тему
-    const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      setTheme(systemPrefersDark ? 'dark' : 'light');
-    }
-
-    // Обработка клика по кнопке
-    toggleButton.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      setTheme(newTheme);
-    });
-  </script>
+  <script src="js/theme.js"></script>
 </body>
 </html>
+
 
 
